@@ -15,7 +15,13 @@ const items = [
 const Nav = () => (
   <div className={styles.container}>
     <img className={styles.logo} src="/assets/tretton37.svg" alt="tretton37 logo" />
-    <Menu inverted borderless className={styles.nav} style={{ background: 'transparent' }}>
+    <Menu
+      inverted
+      borderless
+      className={styles.nav}
+      style={{ background: 'transparent' }}
+      stackable
+    >
       {items.map(({ key, active, name }) => (
         <Menu.Item key={key} active={active} name={name} />
       ))}

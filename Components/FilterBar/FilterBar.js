@@ -46,7 +46,7 @@ const FilterBar = ({
 
   return (
     <Segment basic>
-      <Grid>
+      <Grid stackable doubling>
         <Grid.Column width={4}>
           <Dropdown
             placeholder="Filter by office"

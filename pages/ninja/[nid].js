@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Head from 'next/head';
+
 import {
   Button,
   Container,
@@ -38,6 +40,9 @@ const DetailsPage = () => {
 
   return (
     <Container style={{ marginTop: 100 }}>
+      <Head>
+        <title>{ninja?.name}</title>
+      </Head>
       {error && (
         <Message
           error
