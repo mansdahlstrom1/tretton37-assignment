@@ -1,5 +1,4 @@
 import React from 'react';
-import { Container } from 'semantic-ui-react';
 import Nav from '../Nav/Nav';
 
 import styles from './Header.module.css';
