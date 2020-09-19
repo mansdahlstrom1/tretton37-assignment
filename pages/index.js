@@ -4,6 +4,7 @@ import { Container, Grid } from 'semantic-ui-react';
 import { getNinjas } from '../lib/api';
 
 import NinjaCard from '../Components/NinjaCard/NinjaCard';
+import Hero from '../Components/Hero/Hero';
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
@@ -27,6 +28,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Hero />
       <Container style={{ marginTop: 30 }}>
         <Grid columns={3}>
           {ninjas.map((ninja) => (

@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useRouter } from 'next/router'
-import styles from './NinjaCard.module.css';
+import { useRouter } from 'next/router';
 import { Button, Grid } from 'semantic-ui-react';
+
+import styles from './NinjaCard.module.css';
 
 const NinjaCard = ({ ninja }) => {
   const router = useRouter();
@@ -26,11 +27,14 @@ const NinjaCard = ({ ninja }) => {
         <Grid.Column width="8">
           <img className={styles.image} src={ninja.imagePortraitUrl} alt={`${ninja.name}-avatar`} />
         </Grid.Column>
-        <Grid.Column width="8">
-          {ninja.name}
-
-          <Button onClick={goToDetails}>
-            Visit?
+        <Grid.Column width="8" className={styles.textContainer}>
+          <h3 className={styles.name}>{ninja.name}</h3>
+          <Button
+            size="small"
+            className={styles.button}
+            onClick={goToDetails}
+          >
+            Get to know me
           </Button>
         </Grid.Column>
       </Grid>

@@ -5,6 +5,22 @@
   padding: 20px;
 }
 
+.textContainer {
+  display: flex !important;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
 .image {
   border-radius: 1rem;
+}
+
+.name {
+  font-weight: 300;
+}
+
+.button {
+  background: #80C565 !important;
+  padding: 0.5rem 1rem !important;
+  align-self: flex-end;
 }
