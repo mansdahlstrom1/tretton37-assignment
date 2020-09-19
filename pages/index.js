@@ -1,7 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head';
+import { Container, Grid } from 'semantic-ui-react';
+import { getNinjas } from '../lib/api';
+
+import NinjaCard from '../Components/NinjaCard/NinjaCard';
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
+  const [ninjas, setNinjas] = useState([]);
+
+  useEffect(() => {
+    const getTheNinjas = async () => {
+      setLoading(true);
+      const nin = await getNinjas();
+      setNinjas(nin.slice(0, 20));
+      setLoading(false);
+    };
+
+    getTheNinjas();
+  }, []);
+
   return (
     <div>
       <Head>
@@ -9,7 +27,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <h1> Home </h1>
+      <Container style={{ marginTop: 30 }}>
+        <Grid columns={3}>
+          {ninjas.map((ninja) => (
+            <Grid.Column key={ninja.email}>
+              <NinjaCard ninja={ninja} />
+            </Grid.Column>
+          ))}
+        </Grid>
+      </Container>
     </div>
   );
 }
