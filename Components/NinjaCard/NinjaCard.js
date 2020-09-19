@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
-import { Button, Grid } from 'semantic-ui-react';
+import { Button, Grid, Flag } from 'semantic-ui-react';
 
 import styles from './NinjaCard.module.css';
+import { getFlagByOffice } from '../../lib/utils';
 
 const NinjaCard = ({ ninja }) => {
   const router = useRouter();
@@ -19,8 +20,6 @@ const NinjaCard = ({ ninja }) => {
     });
   };
 
-  console.log(ninja);
-
   return (
     <div className={styles.card}>
       <Grid>
@@ -29,6 +28,8 @@ const NinjaCard = ({ ninja }) => {
         </Grid.Column>
         <Grid.Column width="8" className={styles.textContainer}>
           <h3 className={styles.name}>{ninja.name}</h3>
+          <Flag name={getFlagByOffice(ninja.office)} />
+          <h4>{ninja.office}</h4>
           <Button
             size="small"
             className={styles.button}

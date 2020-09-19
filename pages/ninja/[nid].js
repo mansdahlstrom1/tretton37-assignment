@@ -6,7 +6,6 @@ import {
   Grid,
   Header,
   Message,
-  Placeholder,
 } from 'semantic-ui-react';
 
 import { getNinja } from '../../lib/api';
@@ -14,21 +13,17 @@ import { getNinja } from '../../lib/api';
 const DetailsPage = () => {
   const router = useRouter();
   const { nid } = router.query;
-  const [loading, setLoading] = useState(true);
   const [ninja, setNinja] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const getSingleNinja = async (id) => {
-      setLoading(true);
       const nin = await getNinja(id);
       if (nin.id === 'apierror') {
         console.log(nin);
         setError(nin);
-        setLoading(false);
       } else {
         setNinja(nin);
-        setLoading(false);
       }
     };
 
@@ -60,7 +55,7 @@ const DetailsPage = () => {
           <div dangerouslySetInnerHTML={{ __html: ninja?.mainText }} />
         </Grid.Column>
         <Grid.Column width={6}>
-          <img src={ninja?.imageBodyUrl} />
+          <img src={ninja?.imageBodyUrl} alt={`${ninja?.name}-full-body`} />
         </Grid.Column>
       </Grid>
       <Button onClick={() => router.back()}>
