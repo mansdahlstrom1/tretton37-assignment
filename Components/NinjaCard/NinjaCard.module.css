@@ -1,26 +1,8 @@
-.card {
-  display: grid;
-  background: white;
-  border-radius: 0.2rem;
-  padding: 20px;
-}
-
-.textContainer {
-  display: flex !important;
-  justify-content: space-between;
-  flex-direction: column;
-}
-
 .image {
-  border-radius: 1rem;
+  width: fit-content;
+  background: white !important;
 }
 
-.name {
-  font-weight: 300;
-}
-
-.button {
-  background: #80C565 !important;
-  padding: 0.5rem 1rem !important;
-  align-self: flex-end;
+.overflow {
+  overflow: hidden;
 }

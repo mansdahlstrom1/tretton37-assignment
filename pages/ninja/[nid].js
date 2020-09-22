@@ -41,7 +41,7 @@ const DetailsPage = () => {
   return (
     <Container style={{ marginTop: 100 }}>
       <Head>
-        <title>{ninja?.name}</title>
+        <title>Meet &#10140; {ninja?.name ?? 'Ninja'}</title>
       </Head>
       {error && (
         <Message
