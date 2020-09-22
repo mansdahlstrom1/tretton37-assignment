@@ -48,7 +48,6 @@ const Socials = ({ ninja, active }) => {
     >
       {socials.map(({
         available,
-        baseUrl,
         handle,
         iconName,
       }) => {

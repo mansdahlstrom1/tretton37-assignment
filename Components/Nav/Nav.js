@@ -3,7 +3,6 @@ import { Icon, Menu, Responsive } from 'semantic-ui-react';
 
 import styles from './Nav.module.css';
 import Logo from '../../public/assets/tretton37.svg';
-import { resolveHref } from 'next/dist/next-server/lib/router/router';
 
 const items = [
   { key: 'Who we are', name: 'Who we are' },
