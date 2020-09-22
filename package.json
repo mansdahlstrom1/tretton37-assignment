@@ -7,7 +7,7 @@
     "lint": "eslint .",
     "build": "next build && next export",
     "start": "next start",
-    "test": "mocha test/api.js"
+    "test": "mocha test/**/*.js"
   },
   "dependencies": {
     "isomorphic-fetch": "^2.2.1",
