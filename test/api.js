@@ -1,12 +1,9 @@
 /* global describe, it */
 
-import { assert } from "chai";
-import { ApiError } from "next/dist/next-server/server/api-utils";
-import { instanceOf } from "prop-types";
-import { async } from "regenerator-runtime";
+import { assert } from 'chai';
 
 import { getNinjas, getNinja } from '../lib/api';
-import { sluggify } from "../lib/sluggify";
+import { sluggify } from '../lib/sluggify';
 
 describe('API', () => {
   describe('API endpoint /ninjas', async () => {
