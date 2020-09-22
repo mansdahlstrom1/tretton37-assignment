@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { useRouter } from 'next/router';
 import { Button, Grid, Flag } from 'semantic-ui-react';
 
 import styles from './NinjaCard.module.css';
 import { getFlagByOffice } from '../../lib/utils';
+import getMap from '../../lib/maps';
 
 const NinjaCard = ({ ninja }) => {
   const router = useRouter();
+  const image = useRef(null);
+
+  useEffect(() => {
+    const getNinjaMap = async () => {
+      const map = await getMap();
+      console.log(map);
+    };
+
+    if (ninja && ninja.office === 'Lund') {
+      getNinjaMap();
+    }
+  }, []);
 
   if (!ninja) {
     // TODO render placeholder
@@ -27,6 +40,7 @@ const NinjaCard = ({ ninja }) => {
           <img className={styles.image} src={ninja.imagePortraitUrl} alt={`${ninja.name}-avatar`} />
         </Grid.Column>
         <Grid.Column width="8" className={styles.textContainer}>
+          <img src={image.current} alt="map" />
           <h3 className={styles.name}>{ninja.name}</h3>
           <Flag name={getFlagByOffice(ninja.office)} />
           <h4>{ninja.office}</h4>
