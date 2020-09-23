@@ -6,7 +6,7 @@ import Logo from '../../public/assets/tretton37.svg';
 
 const items = [
   { key: 'Who we are', name: 'Who we are' },
-  { key: 'What we do', name: 'What we dos' },
+  { key: 'What we do', name: 'What we do' },
   { key: 'Knowledge sharing', name: 'Knowledge sharing' },
   { key: 'Join', name: 'Join' },
   { key: 'Inquire', name: 'Inquire' },
