@@ -1,6 +1,7 @@
 .container {
   background: #002B55;
   display: inline-block;
+  min-height: 80px;
   width: 100%;
   position: fixed;
   top: 0;
@@ -20,5 +21,19 @@
   padding: 1rem 1rem 1rem 2rem;
   margin: 1rem 0;
   fill: white;
-  width: 112px !important;
+  width: 140px;
+  transition: fill 1s;
+}
+
+.logo:hover {
+  fill: #80c566;
+}
+
+.mobileNav {
+  float: right;
+  padding: 1rem 1rem 1rem 2rem;
+  margin: 1rem !important;
+  margin-right: 2rem !important;
+  cursor: pointer;
+  color: white;
 }

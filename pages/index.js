@@ -3,6 +3,7 @@ import Head from 'next/head';
 import {
   Container,
   Grid,
+  Loader,
   Segment,
 } from 'semantic-ui-react';
 
@@ -13,9 +14,11 @@ import Hero from '../Components/Hero/Hero';
 import FilterBar from '../Components/FilterBar/FilterBar';
 import { getUniqueOffices, sort } from '../lib/utils';
 import { SORT_TYPES } from '../lib/constants';
+import Nav from '../Components/Nav/Nav';
 
 export default function Home() {
   // Data states
+  const [loading, setLoading] = useState(false);
   const [ninjas, setNinjas] = useState([]);
   const [filteredNinjas, setFilteredNinjas] = useState([]);
   const [offices, setOffices] = useState([]);
@@ -27,10 +30,12 @@ export default function Home() {
 
   useEffect(() => {
     const getTheNinjas = async () => {
+      setLoading(true);
       const nin = await getNinjas();
       setNinjas(nin);
       setFilteredNinjas(nin);
       setOffices(getUniqueOffices(nin));
+      setLoading(false);
     };
 
     getTheNinjas();
@@ -60,12 +65,12 @@ export default function Home() {
   const onOfficeSelected = (_, { value }) => setSelectedOffice(value);
 
   return (
-    <div>
+    <div style={{ background: '#efefef', minHeight: '100vh' }}>
       <Head>
         <title>Meet</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <Nav />
       <Hero />
       <Container style={{ marginTop: 30 }}>
         <FilterBar
@@ -80,7 +85,7 @@ export default function Home() {
         />
         <Segment basic>
           <p>Showing: {filteredNinjas.length} / {ninjas.length} ninjas</p>
-          <Grid columns={3} stackable doubling>
+          <Grid columns={5} stackable doubling stretched>
             {filteredNinjas
               .sort(sort(sorting))
               .map((ninja) => (
@@ -89,6 +94,7 @@ export default function Home() {
                 </Grid.Column>
               ))}
           </Grid>
+          <Loader active={loading} />
         </Segment>
       </Container>
     </div>

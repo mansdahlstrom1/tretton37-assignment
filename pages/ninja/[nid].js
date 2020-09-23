@@ -8,9 +8,11 @@ import {
   Grid,
   Header,
   Message,
+  Placeholder,
 } from 'semantic-ui-react';
 
 import { getNinja } from '../../lib/api';
+import Nav from '../../Components/Nav/Nav';
 
 const DetailsPage = () => {
   const router = useRouter();
@@ -33,41 +35,86 @@ const DetailsPage = () => {
 
     if (nid) {
       getSingleNinja(nid);
-    } else {
-      router.push('/');
     }
-  }, []);
+  }, [nid]);
 
   return (
-    <Container style={{ marginTop: 100 }}>
+    <>
       <Head>
-        <title>{ninja?.name}</title>
+        <title>Meet &#10140; {ninja?.name ?? 'Ninja'}</title>
       </Head>
-      {error && (
-        <Message
-          error
-          header={error.message}
-          content={error.url}
-        />
-      )}
-      <Grid>
-        <Grid.Column width={10}>
-          <Header
-            as="h2"
-            content={ninja?.name}
-            subheader={ninja?.email}
-          />
-          <div dangerouslySetInnerHTML={{ __html: ninja?.mainText }} />
-        </Grid.Column>
-        <Grid.Column width={6}>
-          <img src={ninja?.imageBodyUrl} alt={`${ninja?.name}-full-body`} />
-        </Grid.Column>
-      </Grid>
-      <Button onClick={() => router.back()}>
-        Go back
-      </Button>
 
-    </Container>
+      <Nav />
+      <Container style={{ paddingTop: 150 }}>
+        {error && (
+          <Message
+            error
+            header={error.message}
+            content={error.url}
+          />
+        )}
+        <Grid>
+          <Grid.Column width={10}>
+            {ninja ? (
+              <>
+                <Header
+                  as="h2"
+                  content={ninja?.name}
+                  subheader={ninja?.email}
+                />
+                <div dangerouslySetInnerHTML={{ __html: ninja?.mainText }} />
+              </>
+            ) : (
+              <Placeholder fluid>
+                <Placeholder.Header image>
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                </Placeholder.Header>
+
+                <Placeholder.Paragraph>
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                </Placeholder.Paragraph>
+
+                <Placeholder.Paragraph>
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                </Placeholder.Paragraph>
+
+                <Placeholder.Paragraph>
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                  <Placeholder.Line />
+                </Placeholder.Paragraph>
+              </Placeholder>
+            )}
+          </Grid.Column>
+          <Grid.Column width={6}>
+            {ninja ? (
+              <img src={ninja?.imageBodyUrl} alt={`${ninja?.name}-full-body`} />
+            ) : (
+              <Placeholder>
+                <Placeholder.Image square />
+              </Placeholder>
+            )}
+          </Grid.Column>
+        </Grid>
+        <Button onClick={() => router.back()}>
+          Go back
+        </Button>
+      </Container>
+    </>
   );
 };
 
