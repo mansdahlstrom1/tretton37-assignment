@@ -14,6 +14,7 @@ import Hero from '../Components/Hero/Hero';
 import FilterBar from '../Components/FilterBar/FilterBar';
 import { getUniqueOffices, sort } from '../lib/utils';
 import { SORT_TYPES } from '../lib/constants';
+import Nav from '../Components/Nav/Nav';
 
 export default function Home() {
   // Data states
@@ -64,11 +65,12 @@ export default function Home() {
   const onOfficeSelected = (_, { value }) => setSelectedOffice(value);
 
   return (
-    <div>
+    <div style={{ background: '#efefef', minHeight: '100vh' }}>
       <Head>
         <title>Meet</title>
       </Head>
 
+      <Nav />
       <Hero />
       <Container style={{ marginTop: 30 }}>
         <FilterBar
@@ -83,7 +85,7 @@ export default function Home() {
         />
         <Segment basic>
           <p>Showing: {filteredNinjas.length} / {ninjas.length} ninjas</p>
-          <Grid columns={4} stackable doubling stretched>
+          <Grid columns={5} stackable doubling stretched>
             {filteredNinjas
               .sort(sort(sorting))
               .map((ninja) => (
