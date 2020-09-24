@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import Head from 'next/head';
 import {
   Container,
@@ -20,8 +20,6 @@ export default function Home() {
   // Data states
   const [loading, setLoading] = useState(false);
   const [ninjas, setNinjas] = useState([]);
-  const [filteredNinjas, setFilteredNinjas] = useState([]);
-  const [offices, setOffices] = useState([]);
 
   // filter states
   const [query, setQuery] = useState('');
@@ -33,36 +31,32 @@ export default function Home() {
       setLoading(true);
       const nin = await getNinjas();
       setNinjas(nin);
-      setFilteredNinjas(nin);
-      setOffices(getUniqueOffices(nin));
       setLoading(false);
     };
 
     getTheNinjas();
   }, []);
 
-  useEffect(() => {
-    const newNinjas = ninjas.filter(({ name, office }) => {
-      if (query === '' && selectedOffice === '') {
-        return true;
-      }
-
-      if (selectedOffice !== '' && selectedOffice !== office) {
-        return false;
-      }
-
-      if (query !== '' && name.toLowerCase().indexOf(query.toLowerCase()) === -1) {
-        return false;
-      }
-
-      return true;
-    });
-
-    setFilteredNinjas(newNinjas);
-  }, [query, selectedOffice]);
-
   const onSearch = (_, { value }) => setQuery(value);
   const onOfficeSelected = (_, { value }) => setSelectedOffice(value);
+
+  const filteredNinjas = useMemo(() => ninjas.filter(({ name, office }) => {
+    if (query === '' && selectedOffice === '') {
+      return true;
+    }
+
+    if (selectedOffice !== '' && selectedOffice !== office) {
+      return false;
+    }
+
+    if (query !== '' && name.toLowerCase().indexOf(query.toLowerCase()) === -1) {
+      return false;
+    }
+
+    return true;
+  }), [ninjas, query, selectedOffice, sorting]);
+
+  const offices = useMemo(() => getUniqueOffices(ninjas), [ninjas]);
 
   return (
     <div style={{ background: '#efefef', minHeight: '100vh' }}>
