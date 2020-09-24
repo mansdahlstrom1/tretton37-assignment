@@ -31,8 +31,6 @@ const DetailsPage = () => {
       }
     };
 
-    console.log(router.query);
-
     if (nid) {
       getSingleNinja(nid);
     }
