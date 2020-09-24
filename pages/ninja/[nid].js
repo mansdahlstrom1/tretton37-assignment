@@ -24,7 +24,6 @@ const DetailsPage = () => {
     const getSingleNinja = async (id) => {
       const nin = await getNinja(id);
       if (nin.id === 'apierror') {
-        console.log(nin);
         setError(nin);
       } else {
         setNinja(nin);
