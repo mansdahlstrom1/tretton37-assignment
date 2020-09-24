@@ -1,3 +1,10 @@
 {
-  "presets": ["next/babel"]
+  "presets": [
+    ["next/babel", {
+      "debug": true,
+      "preset-env": {
+        "targets": "> 0.25%, not dead"
+      }
+    }]
+  ]
 }

@@ -31,8 +31,6 @@ const DetailsPage = () => {
       }
     };
 
-    console.log(router.query);
-
     if (nid) {
       getSingleNinja(nid);
     }
@@ -59,10 +57,10 @@ const DetailsPage = () => {
               <>
                 <Header
                   as="h2"
-                  content={ninja?.name}
-                  subheader={ninja?.email}
+                  content={ninja.name}
+                  subheader={ninja.email}
                 />
-                <div dangerouslySetInnerHTML={{ __html: ninja?.mainText }} />
+                <div dangerouslySetInnerHTML={{ __html: ninja.mainText }} />
               </>
             ) : (
               <Placeholder fluid>

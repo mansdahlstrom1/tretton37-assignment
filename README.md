@@ -1,5 +1,5 @@
 # Tretton37 Code Assignment
-> Create a new and improved page for displaying all the ninjas of tretton37
+> Create a new and improved page for displaying all the ninjas of tretton37. Visit the site [tretton37.mansdahlstrom.se](https://tretton37.mansdahlstrom.se/)
 
 ## Usage
 To run the project
@@ -34,6 +34,19 @@ My first goal was just to get a base design and routes setup before i started to
 
 After doing some digging into the API I quickly noted at the start of the project that the API had routes for getting a single ninja, but that there was no ID provided for each ninja by the API. So, one of my first task became solving the issue of a user landing on the `/ninja/:ninja_id` without needing that load all ninjas from the API. This seems quite inefficient to me so I decided to reverse engineer the ID in my API class to be able to use this endpoint also for the "single ninja" page.
 
-Once the design was in an "okay" state and the routing and API stuff was mostly handled i started digging into the feature list to enable some more functionality. As stated above the features I had chosen where doing a filter bar at the top of the page with the ability to sort / filter between names and offices.      
+Once the design was in an "okay" state and the routing and API stuff was mostly handled i started digging into the feature list to enable some more functionality. As stated above the features I had chosen where doing a filter bar at the top of the page with the ability to sort / filter between names and offices.
+
+## Things i would change / would want to improve on
+
+- Design ( i had a cool vision of rendering an SVG map as the background of each card to make the design feel a bit more alive). Unfortunately i did not have time to fix this in a good way, this pull request is the start of a node script the generates the PNG images based on the location of the offices from the API.
+- Don't use Semantic UI. It uses `!important` a lot and is not very friendly with `css.modules`. I think it was good to stick with something i know for this task but i think there are better UI frameworks that i could try
+- More animations + infinity scroll. I was really into the idea of creating more animations +  infinity scroll since it's quite fun to implement IMO. I instead spent more time in build a custom CI pipeline since this is something i've been wanting to do for my personal website that is also running on my server at home.
+- Using [useContext](https://reactjs.org/docs/hooks-reference.html#usecontext). Or added some kinda of state management to not reload all ninjas every time you land of the start page. 
+
+## Notable project features
+
+- Website running on my Ubuntu Server at home.
+- Fully working custom built CI pipeline. Website will deploy the prod branch on my ubuntu server at home when something is pushed to the prod branch.
+- Custom subdomain and ssl Certificates 
 
  
